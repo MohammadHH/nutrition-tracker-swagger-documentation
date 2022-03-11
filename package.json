@@ -1,0 +1,24 @@
+{
+  "name": "nutrition-tracker-swagger-documentation",
+  "version": "1.0.0",
+  "description": "Nutrition Tracker API Documentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "dependencies": {
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0",
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammadHH/nutrition-tracker-swagger-documentation.git"
+  },
+  "author": "MohammadHH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohammadHH/nutrition-tracker-swagger-documentation/issues"
+  },
+  "homepage": "https://github.com/MohammadHH/nutrition-tracker-swagger-documentation#readme"
+}
