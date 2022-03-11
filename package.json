@@ -4,7 +4,8 @@
   "description": "Nutrition Tracker API Documentation",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "node index.js"
   },
   "dependencies": {
     "swagger-jsdoc": "^6.1.0",
