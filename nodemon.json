@@ -1,0 +1,6 @@
+{
+    "env":{
+        "HOST_NAME":"https://nutrition-tracker-rest-api-v1.herokuapp.com/api/v1",
+        "VALID_JWT":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbW9AZ21haWwuY29tIiwidXNlcklkIjoiNjIyYmEwZjQ5OTEzYWJjMzJmM2ExOWFmIiwidHlwZSI6Im5vcm1hbCB1c2VyIiwiaWF0IjoxNjQ3MTE2NTM2LCJleHAiOjEwMjg3MTE2NTM2fQ.HXkYS6aNOiVI7-TPxY_R5aqtyA6DPHobGrMKBuHQpVo"
+    }
+}
