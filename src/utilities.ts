@@ -10,13 +10,14 @@ const buildResponse = (code, description, schema) => {
   };
 };
 
-const buildResponses = (arr = []) => {
+const buildResponses = (arr:Array<any> = []) => {
   const responses = arr.map(([code, description, schema]) => {
     if (code >= 200 && code < 400) {
       return buildResponse(code, description, schema);
     } else if (code >= 400 && code < 500) {
       return buildResponse(code, description, "ApiErrorResponse");
     }
+    return buildResponse(999,'','')
   });
   responses.push(buildResponse(500, "Server error", "ApiErrorResponse"));
   return responses.reduce((curr, next) => {
@@ -26,6 +27,6 @@ const buildResponses = (arr = []) => {
   }, {});
 };
 
-module.exports = {
+export  {
   buildResponses,
 };

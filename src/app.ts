@@ -1,12 +1,13 @@
-const express = require("express");
-const swaggerUI = require("swagger-ui-express");
-const {
+import express from "express"
+import swaggerUI from "swagger-ui-express";
+import {
   usersTag,
   userLoginRequestSchema,
   userLoginResponseSchema,
   usersPath,
   userSchema,
-} = require("./users");
+} from "./users";
+
 // the app is an express module that has all the express features
 const app = express();
 

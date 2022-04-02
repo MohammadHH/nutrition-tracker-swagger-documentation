@@ -1,4 +1,4 @@
-const { buildResponses } = require("./utilities");
+import { buildResponses } from "./utilities";
 
 const usersTag = {
   name: "Users",
@@ -115,7 +115,7 @@ const usersPath = {
   },
 };
 
-module.exports = {
+export {
   usersTag,
   userLoginRequestSchema,
   userLoginResponseSchema,
