@@ -1,5 +1,5 @@
 import express from 'express';
-import swaggerUI from 'swagger-ui-express';
+import swaggerUI, { SwaggerUiOptions } from 'swagger-ui-express';
 import {
   usersTag,
   userLoginRequestSchema,
@@ -23,47 +23,55 @@ const info = {
   },
 };
 
+const options: SwaggerUiOptions = {
+  customSiteTitle: 'Nutrition Tracker API Documentation',
+};
+
 // register swagger
 app.use(
   '/',
   swaggerUI.serve,
-  swaggerUI.setup({
-    openapi: '3.0.2',
-    ...info,
-    servers: [{ url: process.env.SERVER_PATH }],
-    tags: [usersTag],
-    paths: {
-      ...usersPath.reduce(
-        (curr, [pathName, pathItem]) => ({ ...curr, [pathName]: pathItem }),
-        {},
-      ),
-    },
-    components: {
-      securitySchemes: {
-        bearerAuth: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+  swaggerUI.setup(
+    {
+      openapi: '3.0.2',
+      ...info,
+      servers: [{ url: process.env.SERVER_PATH }],
+      tags: [usersTag],
+      paths: {
+        ...usersPath.reduce(
+          (curr, [pathName, pathItem]) => ({ ...curr, [pathName]: pathItem }),
+          {},
+        ),
       },
-      schemas: {
-        User: userSchema,
-        UserLoginRequest: userLoginRequestSchema,
-        UserLoginResponse: userLoginResponseSchema,
-        UserSignupRequest: userSignupRequestSchema,
-        UserSignupResponse: userSignupResponseSchema,
-        LoggedInUserResponse: loggedInUserResponseSchema,
-        ApiErrorResponse: {
-          type: 'object',
-          properties: {
-            message: {
-              type: 'string',
+      components: {
+        securitySchemes: {
+          bearerAuth: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+        },
+        schemas: {
+          User: userSchema,
+          UserLoginRequest: userLoginRequestSchema,
+          UserLoginResponse: userLoginResponseSchema,
+          UserSignupRequest: userSignupRequestSchema,
+          UserSignupResponse: userSignupResponseSchema,
+          LoggedInUserResponse: loggedInUserResponseSchema,
+          ApiErrorResponse: {
+            type: 'object',
+            properties: {
+              message: {
+                type: 'string',
+              },
             },
           },
         },
       },
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
     },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
-  }),
+    options,
+  ),
 );
-module.exports = app;
+
+export default app;
