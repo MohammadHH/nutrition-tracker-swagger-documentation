@@ -6,6 +6,9 @@ import {
   userLoginResponseSchema,
   usersPath,
   userSchema,
+  userSignupRequestSchema,
+  userSignupResponseSchema,
+  loggedInUserResponseSchema,
 } from './routes/users';
 
 // the app is an express module that has all the express features
@@ -40,9 +43,12 @@ app.use(
         bearerAuth: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       },
       schemas: {
+        User: userSchema,
         UserLoginRequest: userLoginRequestSchema,
         UserLoginResponse: userLoginResponseSchema,
-        User: userSchema,
+        UserSignupRequest: userSignupRequestSchema,
+        UserSignupResponse: userSignupResponseSchema,
+        LoggedInUserResponse: loggedInUserResponseSchema,
         ApiErrorResponse: {
           type: 'object',
           properties: {

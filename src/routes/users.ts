@@ -59,9 +59,23 @@ const responseMessage: Property = {
   example: 'Logged in successfully.',
 };
 
+const signupResponseMessage: Property = {
+  type: 'string',
+  example: 'User {{username}} has been created successfully.',
+};
+
 const responseToken: Property = {
   type: 'string',
   example: 'JWT token',
+};
+
+const userLoginRequestSchema: Schema = {
+  type: 'object',
+  properties: {
+    email,
+    password,
+  },
+  required: ['email', 'password'],
 };
 
 const userLoginResponseSchema: Schema = {
@@ -73,12 +87,34 @@ const userLoginResponseSchema: Schema = {
   },
 };
 
-const userLoginRequestSchema: Schema = {
-  required: ['email', 'password'],
+const userSignupRequestSchema: Schema = {
   type: 'object',
   properties: {
+    username,
     email,
     password,
+    initialWeight,
+    goalWeight,
+    height,
+    activityLevel,
+    dateOfBirth,
+  },
+  required: [
+    'username',
+    'email',
+    'password',
+    'initialWeight',
+    'goalWeight',
+    'height',
+    'activityLevel',
+    'dateOfBirth',
+  ],
+};
+
+const userSignupResponseSchema: Schema = {
+  type: 'object',
+  properties: {
+    message: signupResponseMessage,
   },
 };
 
@@ -92,6 +128,13 @@ const userSchema: Schema = {
     height,
     activityLevel,
     dateOfBirth,
+  },
+};
+
+const loggedInUserResponseSchema: Schema = {
+  type: 'object',
+  properties: {
+    user: { $ref: '#/components/schemas/User' },
   },
 };
 
@@ -114,7 +157,48 @@ const usersPath: Array<Path> = [
         },
         responses: buildResponses([
           [200, 'Logged in successfully', 'UserLoginResponse'],
-          [401, 'Invalid email and/or password'],
+          [401, 'Incorrect email and/or password'],
+        ]),
+      },
+    },
+  ],
+  [
+    '/users/signup',
+    {
+      post: {
+        security: [],
+        tags: ['Users'],
+        summary: 'Register a user',
+        operationId: 'registerUser',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: { $ref: '#/components/schemas/UserSignupRequest' },
+            },
+          },
+          required: true,
+        },
+        responses: buildResponses([
+          [
+            201,
+            'User {{username}} has been created successfully.',
+            'UserSignupResponse',
+          ],
+          [409, 'Email {{provided email}} already exists.'],
+        ]),
+      },
+    },
+  ],
+  [
+    '/users',
+    {
+      get: {
+        tags: ['Users'],
+        summary: 'Retrieve the logged in user information',
+        operationId: 'getLoggedInUser',
+        responses: buildResponses([
+          [200, '', 'LoggedInUserResponse'],
+          [401, 'Authentication failed'],
         ]),
       },
     },
@@ -125,6 +209,9 @@ export {
   usersTag,
   userLoginRequestSchema,
   userLoginResponseSchema,
+  userSignupRequestSchema,
+  userSignupResponseSchema,
+  loggedInUserResponseSchema,
   userSchema,
   usersPath,
 };
