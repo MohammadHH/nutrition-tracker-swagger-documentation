@@ -1,6 +1,10 @@
 import { Response, Responses } from 'swagger-jsdoc';
 
-const buildResponse = (code, description, schema): Response => {
+const buildResponse = (
+  code: number,
+  description: string,
+  schema: string,
+): Response => {
   return {
     code,
     description,
@@ -17,7 +21,7 @@ const buildResponses = (
 ): Responses => {
   const responses = arr.map(([code, description, schema]) => {
     if (code >= 200 && code < 400) {
-      return buildResponse(code, description, schema);
+      return buildResponse(code, description, schema || '');
     } else if (code >= 400 && code < 500) {
       return buildResponse(code, description, 'ApiErrorResponse');
     }
@@ -28,7 +32,7 @@ const buildResponses = (
     const { code, ...rest } = next;
     curr[code] = rest;
     return curr;
-  }, {});
+  }, {} as Responses);
 };
 
 export { buildResponses };
