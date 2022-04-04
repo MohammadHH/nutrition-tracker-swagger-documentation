@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import swaggerUI, { SwaggerUiOptions } from 'swagger-ui-express';
 import {
   usersTag,
@@ -25,7 +26,11 @@ const info = {
 
 const options: SwaggerUiOptions = {
   customSiteTitle: 'Nutrition Tracker API Documentation',
+  customfavIcon: 'logo.svg',
+  customCss: `.topbar-wrapper img {content: url(logo.svg)}`,
 };
+
+app.use('/logo.svg', express.static(path.join(__dirname, 'logo.svg')));
 
 // register swagger
 app.use(
