@@ -21,37 +21,37 @@ const name: Property = {
 
 const units: Property = {
   type: 'number',
-  example: 13,
+  example: 100,
   description: 'number of units in the specified food',
 };
 
 const measurement: Property = {
   type: 'string',
-  example: 'gm, kg, piece, can',
+  example: 'gm',
   description: 'measuring unit for the specified food',
 };
 
 const calories: Property = {
   type: 'string',
-  example: 'Strawberry',
+  example: 50,
   description: 'calories content for the given unit of food',
 };
 
 const carbs: Property = {
   type: 'number',
-  example: 50,
+  example: 10,
   description: 'carbohydrates content for the given unit of food',
 };
 
 const protein: Property = {
   type: 'string',
-  example: 'Strawberry',
+  example: 2,
   description: 'protein content for the given unit of food',
 };
 
 const fat: Property = {
   type: 'string',
-  example: 'Strawberry',
+  example: 1,
   description: 'fat content for the given unit of food',
 };
 
