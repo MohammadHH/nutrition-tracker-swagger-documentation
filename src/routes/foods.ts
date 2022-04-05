@@ -1,4 +1,5 @@
 import { Schema, Tag } from 'swagger-jsdoc';
+import { buildResponses } from '../utilities';
 import { Path, Property } from './types';
 
 const foodsTag: Tag = {
@@ -64,6 +65,41 @@ const signupResponseMessage: Property = {
   example: 'User {{username}} has been created successfully.',
 };
 
-const foodsPaths: Array<Path> = [];
+const foodsPaths: Array<Path> = [
+  [
+    '/users/loggedIn/foods',
+    {
+      post: {
+        tags: ['Foods'],
+        summary: 'Add food for the authorized user',
+        operationId: 'addFood',
+        requestBody: {
+          content: {
+            'multipart/form-data': {
+              schema: {
+                type: 'object',
+                properties: {
+                  image,
+                  name,
+                  units,
+                  measurement,
+                  calories,
+                  carbs,
+                  protein,
+                  fat,
+                },
+              },
+            },
+          },
+          required: true,
+        },
+        responses: buildResponses([
+          [200, '', 'AddFoodResponse'],
+          [401, ''],
+        ]),
+      },
+    },
+  ],
+];
 
 export { foodsTag, foodsPaths };
