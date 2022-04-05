@@ -10,7 +10,7 @@ import {
 } from './routes/users';
 
 import { foodsTag, foodsPaths } from './routes/foods';
-import { Path } from './routes/types';
+import { reducePaths } from './utilities';
 
 const info = {
   info: {
@@ -20,12 +20,6 @@ const info = {
     version: '1.0.0',
   },
 };
-
-const reducePaths = (paths: Array<Path>) =>
-  paths.reduce(
-    (curr, [pathName, pathItem]) => ({ ...curr, [pathName]: pathItem }),
-    {},
-  );
 
 const swaggerDoc = {
   openapi: '3.0.2',

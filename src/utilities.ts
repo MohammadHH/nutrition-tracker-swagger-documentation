@@ -1,4 +1,5 @@
 import { Response, Responses } from 'swagger-jsdoc';
+import { Path } from './routes/types';
 
 const buildResponse = (
   code: number,
@@ -35,4 +36,10 @@ const buildResponses = (
   }, {} as Responses);
 };
 
-export { buildResponses };
+const reducePaths = (paths: Array<Path>) =>
+  paths.reduce(
+    (curr, [pathName, pathItem]) => ({ ...curr, [pathName]: pathItem }),
+    {},
+  );
+
+export { buildResponses, reducePaths };
