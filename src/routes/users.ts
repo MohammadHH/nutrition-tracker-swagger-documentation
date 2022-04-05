@@ -4,7 +4,7 @@ import { Path, Property } from './types';
 
 const usersTag: Tag = {
   name: 'Users',
-  description: 'The users Managing API',
+  description: 'The Users Managing API',
 };
 
 const username: Property = { type: 'string', example: 'Ahmad' };
@@ -138,7 +138,7 @@ const loggedInUserResponseSchema: Schema = {
   },
 };
 
-const usersPath: Array<Path> = [
+const usersPaths: Array<Path> = [
   [
     '/users/login',
     {
@@ -213,5 +213,5 @@ export {
   userSignupResponseSchema,
   loggedInUserResponseSchema,
   userSchema,
-  usersPath,
+  usersPaths as usersPath,
 };
