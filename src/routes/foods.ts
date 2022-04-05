@@ -55,14 +55,38 @@ const fat: Property = {
   description: 'fat content for the given unit of food',
 };
 
-const responseMessage: Property = {
+const _id: Property = {
   type: 'string',
-  example: 'Logged in successfully.',
+  description: 'the added food id',
+  example: '624c237f67b7bd0f7d8c207b',
 };
 
-const signupResponseMessage: Property = {
+const userId: Property = {
   type: 'string',
-  example: 'User {{username}} has been created successfully.',
+  description: 'the id of the user who added this food',
+  example: '624c237f67b7bd0f7d8c207b',
+};
+
+const responseMessage: Property = {
+  type: 'string',
+  example: 'Strawberry has been added.',
+};
+
+const addFoodResponseSchema: Schema = {
+  type: 'object',
+  properties: {
+    message: responseMessage,
+    _id,
+    userId,
+    image,
+    name,
+    units,
+    measurement,
+    calories,
+    carbs,
+    protein,
+    fat,
+  },
 };
 
 const foodsPaths: Array<Path> = [
@@ -94,12 +118,13 @@ const foodsPaths: Array<Path> = [
           required: true,
         },
         responses: buildResponses([
-          [200, '', 'AddFoodResponse'],
+          [201, '{{provided food}} has been added', 'AddFoodResponse'],
           [401, ''],
+          [409, '{{provided food}} is already added'],
         ]),
       },
     },
   ],
 ];
 
-export { foodsTag, foodsPaths };
+export { foodsTag, foodsPaths, addFoodResponseSchema };
