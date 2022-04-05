@@ -9,6 +9,9 @@ import {
   loggedInUserResponseSchema,
 } from './routes/users';
 
+import { foodsTag, foodsPaths } from './routes/foods';
+import { Path } from './routes/types';
+
 const info = {
   info: {
     title: 'Nutrition Tracker API',
@@ -18,16 +21,20 @@ const info = {
   },
 };
 
-export default {
+const reducePaths = (paths: Array<Path>) =>
+  paths.reduce(
+    (curr, [pathName, pathItem]) => ({ ...curr, [pathName]: pathItem }),
+    {},
+  );
+
+const swaggerDoc = {
   openapi: '3.0.2',
   ...info,
   servers: [{ url: process.env.SERVER_PATH }],
-  tags: [usersTag],
+  tags: [usersTag, foodsTag],
   paths: {
-    ...usersPath.reduce(
-      (curr, [pathName, pathItem]) => ({ ...curr, [pathName]: pathItem }),
-      {},
-    ),
+    ...reducePaths(usersPath),
+    ...reducePaths(foodsPaths),
   },
   components: {
     securitySchemes: {
@@ -56,3 +63,5 @@ export default {
     },
   ],
 };
+
+export default swaggerDoc;
