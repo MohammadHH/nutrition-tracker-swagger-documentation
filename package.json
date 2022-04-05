@@ -6,14 +6,15 @@
   "private": "true",
   "scripts": {
     "copy:assets":"cp src/logo.svg build",
-    "build": "rm -rf ./build && tsc && npm run copy:assets",
+    "build": "rm -rf ./build && npm run tsc && npm run copy:assets",
     "start:dev": "nodemon",
     "start": "npm run build && node build/index.js",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prettier-watch": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
     "test": "jest",
-    "test:dev": "jest --watchAll"
+    "test:dev": "jest --watchAll",
+    "tsc": "tsc"
   },
   "husky": {
     "hooks": {
