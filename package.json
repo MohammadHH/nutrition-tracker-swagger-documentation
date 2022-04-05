@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": "true",
   "scripts": {
-    "build": "rimraf ./build && tsc && cp src/logo.svg build",
+    "copy:assets":"cp src/logo.svg build",
+    "build": "rm -r ./build && tsc && npm run copy:assets",
     "start:dev": "nodemon",
     "start": "npm run build && node build/index.js",
     "lint": "eslint . --ext .ts",
