@@ -35,4 +35,30 @@ const recordSchema: Schema = {
   },
 };
 
-export { recordsTag, recordSchema };
+const recordsPaths: Array<Path> = [
+  [
+    '/users/loggedIn/records',
+    {
+      post: {
+        tags: ['Records'],
+        summary: 'Add record for the authorized user',
+        operationId: 'addRecord',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: { $ref: '#/components/schemas/Record' },
+            },
+          },
+          required: true,
+        },
+        responses: buildResponses([
+          [200, '', 'RetrieveFoodsResponse'],
+          [401, 'Authentication failed'],
+          [409, '{{provided food}} is already added'],
+        ]),
+      },
+    },
+  ],
+];
+
+export { recordsTag, recordSchema, recordsPaths };

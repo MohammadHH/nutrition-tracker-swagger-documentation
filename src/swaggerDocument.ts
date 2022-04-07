@@ -20,7 +20,7 @@ import {
   updateFoodResponseSchema,
 } from './routes/foods';
 
-import { recordSchema, recordsTag } from './routes/records';
+import { recordSchema, recordsPaths, recordsTag } from './routes/records';
 import { reducePaths } from './utilities';
 
 const info = {
@@ -40,6 +40,7 @@ const swaggerDoc = {
   paths: {
     ...reducePaths(usersPath),
     ...reducePaths(foodsPaths),
+    ...reducePaths(recordsPaths),
   },
   components: {
     securitySchemes: {
