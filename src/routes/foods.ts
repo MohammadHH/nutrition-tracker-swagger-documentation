@@ -226,6 +226,29 @@ const foodsPaths: Array<Path> = [
       },
     },
   ],
+  [
+    '/users/loggedIn/foods/{foodId}',
+    {
+      delete: {
+        tags: ['Foods'],
+        summary: 'Delete a food for authorized user',
+        operationId: 'deleteFood',
+        parameters: [
+          {
+            in: 'path',
+            name: 'foodId',
+            schema: { type: 'string' },
+            description: 'food id',
+          },
+        ],
+        responses: buildResponses([
+          [200, 'Food deleted successfully'],
+          [401, 'Authentication failed'],
+          [409, '{{provided food}} is already added'],
+        ]),
+      },
+    },
+  ],
 ];
 
 export {
