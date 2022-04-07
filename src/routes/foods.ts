@@ -73,16 +73,19 @@ const responseMessage: Property = {
 };
 
 const foodSchema: Schema = {
-  _id,
-  userId,
-  image,
-  name,
-  units,
-  measurement,
-  calories,
-  carbs,
-  protein,
-  fat,
+  type: 'object',
+  properties: {
+    _id,
+    userId,
+    image,
+    name,
+    units,
+    measurement,
+    calories,
+    carbs,
+    protein,
+    fat,
+  },
 };
 
 const addFoodResponseSchema: Schema = {
@@ -98,10 +101,7 @@ const retrieveFoodsResponseSchema: Schema = {
   properties: {
     docs: {
       type: 'array',
-      items: {
-        type: 'object',
-        properties: { $ref: '#/components/schemas/Food' },
-      },
+      items: { $ref: '#/components/schemas/Food' },
     },
     totalDocs: {
       type: 'number',
