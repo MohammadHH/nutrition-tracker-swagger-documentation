@@ -83,6 +83,15 @@ const recordsPaths: Array<Path> = [
           [401, 'Authentication failed'],
         ]),
       },
+      get: {
+        tags: ['Records'],
+        summary: 'Retrieve all records',
+        operationId: 'getAllRecords',
+        responses: buildResponses([
+          [200, '', 'RetrieveAllFoodsResponse'],
+          [401, 'Authentication failed'],
+        ]),
+      },
     },
   ],
   [
