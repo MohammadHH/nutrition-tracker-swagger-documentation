@@ -32,7 +32,7 @@ const measurement: Property = {
 };
 
 const calories: Property = {
-  type: 'string',
+  type: 'number',
   example: 50,
   description: 'calories content for the given unit of food',
 };
@@ -44,13 +44,13 @@ const carbs: Property = {
 };
 
 const protein: Property = {
-  type: 'string',
+  type: 'number',
   example: 2,
   description: 'protein content for the given unit of food',
 };
 
 const fat: Property = {
-  type: 'string',
+  type: 'number',
   example: 1,
   description: 'fat content for the given unit of food',
 };
