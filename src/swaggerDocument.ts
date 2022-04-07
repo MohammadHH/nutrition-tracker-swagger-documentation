@@ -14,6 +14,7 @@ import {
   foodsPaths,
   addFoodResponseSchema,
   retrieveFoodsResponseSchema,
+  retrieveAllFoodsResponseSchema,
   foodSchema,
 } from './routes/foods';
 import { reducePaths } from './utilities';
@@ -50,6 +51,7 @@ const swaggerDoc = {
       Food: foodSchema,
       AddFoodResponse: addFoodResponseSchema,
       RetrieveFoodsResponse: retrieveFoodsResponseSchema,
+      RetrieveAllFoodsResponse: retrieveAllFoodsResponseSchema,
       ApiErrorResponse: {
         type: 'object',
         properties: {

@@ -146,6 +146,11 @@ const retrieveFoodsResponseSchema: Schema = {
   },
 };
 
+const retrieveAllFoodsResponseSchema: Schema = {
+  type: 'array',
+  items: { $ref: '#/components/schemas/Food' },
+};
+
 const foodsPaths: Array<Path> = [
   [
     '/users/loggedIn/foods',
@@ -206,12 +211,28 @@ const foodsPaths: Array<Path> = [
       },
     },
   ],
+  [
+    '/users/loggedIn/foods?all=true',
+    {
+      get: {
+        tags: ['Foods'],
+        summary: 'Retrieve all foods',
+        operationId: 'getAllFoods',
+        responses: buildResponses([
+          [200, '', 'RetrieveAllFoodsResponse'],
+          [401, 'Authentication failed'],
+          [409, '{{provided food}} is already added'],
+        ]),
+      },
+    },
+  ],
 ];
 
 export {
   foodsTag,
   foodsPaths,
   addFoodResponseSchema,
-  foodSchema,
   retrieveFoodsResponseSchema,
+  retrieveAllFoodsResponseSchema,
+  foodSchema,
 };
