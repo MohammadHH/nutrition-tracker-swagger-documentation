@@ -183,7 +183,7 @@ const foodsPaths: Array<Path> = [
       get: {
         tags: ['Foods'],
         summary: 'Retrieve foods from specific page',
-        operationId: 'getAllFoods',
+        operationId: 'getPageOfFoods',
         parameters: [
           {
             in: 'query',
