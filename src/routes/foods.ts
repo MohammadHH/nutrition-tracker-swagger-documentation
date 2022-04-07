@@ -92,7 +92,7 @@ const addFoodResponseSchema: Schema = {
   type: 'object',
   properties: {
     message: responseMessage,
-    ...foodSchema,
+    ...foodSchema.properties,
   },
 };
 
@@ -162,19 +162,7 @@ const foodsPaths: Array<Path> = [
         requestBody: {
           content: {
             'multipart/form-data': {
-              schema: {
-                type: 'object',
-                properties: {
-                  image,
-                  name,
-                  units,
-                  measurement,
-                  calories,
-                  carbs,
-                  protein,
-                  fat,
-                },
-              },
+              schema: { $ref: '#/components/schemas/Food' },
             },
           },
           required: true,
