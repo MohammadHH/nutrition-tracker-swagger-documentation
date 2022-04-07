@@ -165,6 +165,14 @@ const retrieveAllFoodsResponseSchema: Schema = {
   items: { $ref: '#/components/schemas/Food' },
 };
 
+const updateFoodResponseSchema: Schema = {
+  type: 'object',
+  properties: {
+    message: responseMessage,
+    ...foodSchema.properties,
+  },
+};
+
 const foodsPaths: Array<Path> = [
   [
     '/users/loggedIn/foods',
@@ -287,4 +295,5 @@ export {
   retrieveAllFoodsResponseSchema,
   foodSchema,
   updateFoodSchema,
+  updateFoodResponseSchema,
 };
