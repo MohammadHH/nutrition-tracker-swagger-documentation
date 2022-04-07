@@ -2,7 +2,7 @@ import { Schema, Tag } from 'swagger-jsdoc';
 import { buildResponses } from '../utilities';
 import { Path, Property } from './types';
 
-const records: Tag = {
+const recordsTag: Tag = {
   name: 'Records',
   description: 'Records Managing API',
 };
@@ -34,3 +34,5 @@ const recordSchema: Schema = {
     amount,
   },
 };
+
+export { recordsTag, recordSchema };

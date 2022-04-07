@@ -19,6 +19,8 @@ import {
   updateFoodSchema,
   updateFoodResponseSchema,
 } from './routes/foods';
+
+import { recordSchema, recordsTag } from './routes/records';
 import { reducePaths } from './utilities';
 
 const info = {
@@ -34,7 +36,7 @@ const swaggerDoc = {
   openapi: '3.0.2',
   ...info,
   servers: [{ url: process.env.SERVER_PATH }],
-  tags: [usersTag, foodsTag],
+  tags: [usersTag, foodsTag, recordsTag],
   paths: {
     ...reducePaths(usersPath),
     ...reducePaths(foodsPaths),
@@ -56,6 +58,7 @@ const swaggerDoc = {
       RetrieveFoodsResponse: retrieveFoodsResponseSchema,
       RetrieveAllFoodsResponse: retrieveAllFoodsResponseSchema,
       UpdateFoodResponse: updateFoodResponseSchema,
+      Record: recordSchema,
       ApiErrorResponse: {
         type: 'object',
         properties: {
