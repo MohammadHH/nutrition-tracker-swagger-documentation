@@ -22,12 +22,13 @@ const buildResponses = (
 ): Responses => {
   const responses = arr.map(([code, description, schema]) => {
     if (code >= 200 && code < 400) {
-      return buildResponse(code, description, schema || '');
+      return buildResponse(code, description, schema || 'ApiErrorResponse');
     } else if (code >= 400 && code < 500) {
       return buildResponse(code, description, 'ApiErrorResponse');
     }
     return buildResponse(999, '', '');
   });
+  responses.push(buildResponse(404, 'Not found', 'ApiErrorResponse'));
   responses.push(buildResponse(500, 'Server error', 'ApiErrorResponse'));
   return responses.reduce((curr, next) => {
     const { code, ...rest } = next;
