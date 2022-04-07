@@ -88,6 +88,20 @@ const foodSchema: Schema = {
   },
 };
 
+const updateFoodSchema: Schema = {
+  type: 'object',
+  properties: {
+    image,
+    name,
+    units,
+    measurement,
+    calories,
+    carbs,
+    protein,
+    fat,
+  },
+};
+
 const addFoodResponseSchema: Schema = {
   type: 'object',
   properties: {
@@ -235,6 +249,32 @@ const foodsPaths: Array<Path> = [
           [409, '{{provided food}} is already added'],
         ]),
       },
+      put: {
+        tags: ['Foods'],
+        summary: 'Update a food for authorized user',
+        operationId: 'updateFood',
+        parameters: [
+          {
+            in: 'path',
+            name: 'foodId',
+            schema: { type: 'string' },
+            description: 'food id',
+          },
+        ],
+        requestBody: {
+          content: {
+            'multipart/form-data': {
+              schema: { $ref: '#/components/schemas/UpdateFood' },
+            },
+          },
+          required: true,
+        },
+        responses: buildResponses([
+          [200, 'Updated successfully', 'UpdateFoodResponse'],
+          [401, 'Authentication failed'],
+          [409, '{{provided food}} is already added'],
+        ]),
+      },
     },
   ],
 ];
@@ -246,4 +286,5 @@ export {
   retrieveFoodsResponseSchema,
   retrieveAllFoodsResponseSchema,
   foodSchema,
+  updateFoodSchema,
 };
