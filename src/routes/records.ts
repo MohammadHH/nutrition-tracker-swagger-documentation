@@ -85,6 +85,28 @@ const recordsPaths: Array<Path> = [
       },
     },
   ],
+  [
+    '/users/loggedIn/records/{recordId}',
+    {
+      delete: {
+        tags: ['Records'],
+        summary: 'Delete a record for authorized user',
+        operationId: 'deleteRecord',
+        parameters: [
+          {
+            in: 'path',
+            name: 'recordId',
+            schema: { type: 'string' },
+            description: 'record id',
+          },
+        ],
+        responses: buildResponses([
+          [200, 'Record deleted successfully'],
+          [401, 'Authentication failed'],
+        ]),
+      },
+    },
+  ],
 ];
 
 export { recordsTag, recordSchema, addRecordResponseSchema, recordsPaths };
