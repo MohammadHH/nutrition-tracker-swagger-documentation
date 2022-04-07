@@ -20,7 +20,12 @@ import {
   updateFoodResponseSchema,
 } from './routes/foods';
 
-import { recordSchema, recordsPaths, recordsTag } from './routes/records';
+import {
+  addRecordResponseSchema,
+  recordSchema,
+  recordsPaths,
+  recordsTag,
+} from './routes/records';
 import { reducePaths } from './utilities';
 
 const info = {
@@ -59,6 +64,7 @@ const swaggerDoc = {
       RetrieveFoodsResponse: retrieveFoodsResponseSchema,
       RetrieveAllFoodsResponse: retrieveAllFoodsResponseSchema,
       UpdateFoodResponse: updateFoodResponseSchema,
+      AddRecordResponse: addRecordResponseSchema,
       Record: recordSchema,
       ApiErrorResponse: {
         type: 'object',

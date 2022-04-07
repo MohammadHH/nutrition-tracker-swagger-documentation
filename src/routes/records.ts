@@ -26,12 +26,39 @@ const amount: Property = {
     'the number of units consumed from the relevant food which is specified by its id',
 };
 
+const _id: Property = {
+  type: 'string',
+  description: 'the added record id',
+};
+
+const userId: Property = {
+  type: 'string',
+  description: 'the id of the user who added this record',
+};
+
+const responseMessage: Property = {
+  type: 'string',
+  example: 'Record has been added successfully',
+};
+
 const recordSchema: Schema = {
   type: 'object',
   properties: {
     foodId,
     date,
     amount,
+  },
+};
+
+const addRecordResponseSchema: Schema = {
+  type: 'object',
+  properties: {
+    message: responseMessage,
+    _id,
+    foodId,
+    userId,
+    amount,
+    date,
   },
 };
 
@@ -52,13 +79,12 @@ const recordsPaths: Array<Path> = [
           required: true,
         },
         responses: buildResponses([
-          [200, '', 'RetrieveFoodsResponse'],
+          [201, 'Record is been added successfully', 'AddRecordResponse'],
           [401, 'Authentication failed'],
-          [409, '{{provided food}} is already added'],
         ]),
       },
     },
   ],
 ];
 
-export { recordsTag, recordSchema, recordsPaths };
+export { recordsTag, recordSchema, addRecordResponseSchema, recordsPaths };
