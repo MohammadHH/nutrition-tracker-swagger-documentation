@@ -72,20 +72,77 @@ const responseMessage: Property = {
   example: 'Strawberry has been added.',
 };
 
+const foodSchema: Schema = {
+  _id,
+  userId,
+  image,
+  name,
+  units,
+  measurement,
+  calories,
+  carbs,
+  protein,
+  fat,
+};
+
 const addFoodResponseSchema: Schema = {
   type: 'object',
   properties: {
     message: responseMessage,
-    _id,
-    userId,
-    image,
-    name,
-    units,
-    measurement,
-    calories,
-    carbs,
-    protein,
-    fat,
+    ...foodSchema,
+  },
+};
+
+const retrieveFoodsResponseSchema: Schema = {
+  type: 'object',
+  properties: {
+    docs: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: { $ref: '#/components/schemas/Food' },
+      },
+    },
+    totalDocs: {
+      type: 'number',
+      example: 100,
+    },
+    offset: {
+      type: 'number',
+      example: 0,
+    },
+    limit: {
+      type: 'number',
+      example: 12,
+    },
+    totalPages: {
+      type: 'number',
+      example: 9,
+    },
+    page: {
+      type: 'number',
+      example: 1,
+    },
+    pagingCounter: {
+      type: 'number',
+      example: 1,
+    },
+    hasPrevPage: {
+      type: 'boolean',
+      example: false,
+    },
+    hasNextPage: {
+      type: 'boolean',
+      example: true,
+    },
+    prevPage: {
+      type: 'number',
+      example: null,
+    },
+    nextPage: {
+      type: 'number',
+      example: 2,
+    },
   },
 };
 
@@ -119,7 +176,31 @@ const foodsPaths: Array<Path> = [
         },
         responses: buildResponses([
           [201, '{{provided food}} has been added', 'AddFoodResponse'],
-          [401, ''],
+          [401, 'Authentication failed'],
+          [409, '{{provided food}} is already added'],
+        ]),
+      },
+      get: {
+        tags: ['Foods'],
+        summary: 'Retrieve foods from specific page',
+        operationId: 'getAllFoods',
+        parameters: [
+          {
+            in: 'query',
+            name: 'page',
+            schema: { type: 'integer' },
+            description: 'page number',
+          },
+          {
+            in: 'query',
+            name: 'size',
+            schema: { type: 'integer' },
+            description: 'number of foods per page',
+          },
+        ],
+        responses: buildResponses([
+          [200, '', 'RetrieveFoodsResponse'],
+          [401, 'Authentication failed'],
           [409, '{{provided food}} is already added'],
         ]),
       },
@@ -127,4 +208,10 @@ const foodsPaths: Array<Path> = [
   ],
 ];
 
-export { foodsTag, foodsPaths, addFoodResponseSchema };
+export {
+  foodsTag,
+  foodsPaths,
+  addFoodResponseSchema,
+  foodSchema,
+  retrieveFoodsResponseSchema,
+};

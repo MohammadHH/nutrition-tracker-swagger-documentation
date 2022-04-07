@@ -9,7 +9,13 @@ import {
   loggedInUserResponseSchema,
 } from './routes/users';
 
-import { foodsTag, foodsPaths, addFoodResponseSchema } from './routes/foods';
+import {
+  foodsTag,
+  foodsPaths,
+  addFoodResponseSchema,
+  retrieveFoodsResponseSchema,
+  foodSchema,
+} from './routes/foods';
 import { reducePaths } from './utilities';
 
 const info = {
@@ -41,7 +47,9 @@ const swaggerDoc = {
       UserSignupRequest: userSignupRequestSchema,
       UserSignupResponse: userSignupResponseSchema,
       LoggedInUserResponse: loggedInUserResponseSchema,
+      Food: foodSchema,
       AddFoodResponse: addFoodResponseSchema,
+      RetrieveFoodsResponse: retrieveFoodsResponseSchema,
       ApiErrorResponse: {
         type: 'object',
         properties: {
