@@ -21,11 +21,21 @@ import {
 } from './routes/foods';
 
 import {
-  addRecordResponseSchema,
   recordSchema,
   recordsPaths,
   recordsTag,
+  addRecordResponseSchema,
+  retrieveRecordsResponseSchema,
 } from './routes/records';
+
+import {
+  addMetricResponseSchema,
+  metricSchema,
+  metricsPaths,
+  metricsTag,
+  retrieveMetricsResponseSchema,
+} from './routes/metrics';
+
 import { reducePaths } from './utilities';
 
 const info = {
@@ -41,11 +51,12 @@ const swaggerDoc = {
   openapi: '3.0.2',
   ...info,
   servers: [{ url: process.env.SERVER_PATH }],
-  tags: [usersTag, foodsTag, recordsTag],
+  tags: [usersTag, foodsTag, recordsTag, metricsTag],
   paths: {
     ...reducePaths(usersPath),
     ...reducePaths(foodsPaths),
     ...reducePaths(recordsPaths),
+    ...reducePaths(metricsPaths),
   },
   components: {
     securitySchemes: {
@@ -64,8 +75,12 @@ const swaggerDoc = {
       RetrieveFoodsResponse: retrieveFoodsResponseSchema,
       RetrieveAllFoodsResponse: retrieveAllFoodsResponseSchema,
       UpdateFoodResponse: updateFoodResponseSchema,
-      AddRecordResponse: addRecordResponseSchema,
       Record: recordSchema,
+      AddRecordResponse: addRecordResponseSchema,
+      RetrieveRecordsResponse: retrieveRecordsResponseSchema,
+      Metric: metricSchema,
+      AddMetricResponse: addMetricResponseSchema,
+      RetrieveMetricsResponse: retrieveMetricsResponseSchema,
       ApiErrorResponse: {
         type: 'object',
         properties: {

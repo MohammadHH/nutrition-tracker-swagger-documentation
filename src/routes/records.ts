@@ -62,6 +62,11 @@ const addRecordResponseSchema: Schema = {
   },
 };
 
+const retrieveRecordsResponseSchema: Schema = {
+  type: 'array',
+  items: { $ref: '#/components/schemas/AddRecordResponse' },
+};
+
 const recordsPaths: Array<Path> = [
   [
     '/users/loggedIn/records',
@@ -88,7 +93,7 @@ const recordsPaths: Array<Path> = [
         summary: 'Retrieve all records',
         operationId: 'getAllRecords',
         responses: buildResponses([
-          [200, '', 'RetrieveAllFoodsResponse'],
+          [200, '', 'RetrieveRecordsResponse'],
           [401, 'Authentication failed'],
         ]),
       },
@@ -118,4 +123,10 @@ const recordsPaths: Array<Path> = [
   ],
 ];
 
-export { recordsTag, recordSchema, addRecordResponseSchema, recordsPaths };
+export {
+  recordsTag,
+  recordSchema,
+  addRecordResponseSchema,
+  retrieveRecordsResponseSchema,
+  recordsPaths,
+};

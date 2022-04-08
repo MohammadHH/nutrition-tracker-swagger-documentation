@@ -12,12 +12,16 @@ app.use(
   '/swaggerCustomJS.js',
   express.static(path.join(__dirname, 'swaggerCustomJS.js')),
 );
+app.use(
+  '/swaggerCustomStyles.css',
+  express.static(path.join(__dirname, 'swaggerCustomStyles.css')),
+);
 
 const uiOptions: SwaggerUiOptions = {
   customSiteTitle: 'Nutrition Tracker API Documentation',
   customfavIcon: 'logo.svg',
-  customCss: `.topbar-wrapper img {content: url(logo.svg)}`,
   customJs: 'swaggerCustomJS.js',
+  customCssUrl: 'swaggerCustomStyles.css',
 };
 
 // register swagger
