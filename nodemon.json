@@ -1,9 +1,9 @@
 {
-    "env":{
-        "SERVER_PATH":"https://nutrition-tracker-rest-api-v1.herokuapp.com/api/v1"
-    },
-    "watch": ["src"],
-    "ext": ".ts,.js",
-    "ignore": [],
-    "exec": "ts-node ./src/index.ts"
+  "env": {
+    "SERVER_PATH": "https://calories-tracker-api.onrender.com/api/v1"
+  },
+  "watch": ["src"],
+  "ext": ".ts,.js",
+  "ignore": [],
+  "exec": "ts-node src/index.ts && npx serve .output"
 }
