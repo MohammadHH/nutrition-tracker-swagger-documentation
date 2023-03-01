@@ -26,7 +26,7 @@ const htmlIndex = `
     />
   </head>
   <body>
-    <div id="swagger-ui"></div>
+    <div id="swagger-ui" style="max-width: 100%;"></div>
     <script
       src="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui-bundle.js"
       crossorigin

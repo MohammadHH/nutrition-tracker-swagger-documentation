@@ -19,3 +19,12 @@
 .swagger-ui .opblock .opblock-summary-path {
   min-width: 80px;
 }
+
+.schemes.wrapper.block.col-12 > div:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.swagger-ui .scheme-container .schemes {
+  gap: 8px;
+}
