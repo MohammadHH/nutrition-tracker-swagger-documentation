@@ -15,3 +15,7 @@
   word-break: inherit;
   overflow: auto;
 }
+
+.swagger-ui .opblock .opblock-summary-path {
+  min-width: 80px;
+}
